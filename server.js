@@ -8,7 +8,7 @@ const consoleTable = require("console.table");
 
 const connection = mysql.createConnection({
     host: "localhost",
-    port: 8889,
+    port: 3306,
     user: "root",
     password: "password",
     database: "tracker_DB"
