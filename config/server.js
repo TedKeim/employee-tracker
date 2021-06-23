@@ -107,6 +107,19 @@ const connection = mysql.createConnection({
                 }
               ])
 
+              .then(function(res) {
+                const title = res.title;
+                const salary = res.salary;
+                const departmentID = res.departmentID;
+                const query = `INSERT INTO role (title, salary, department_id) VALUE("${title}", "${salary}", "${departmentID}")`;
+                connection.query(query, function(err, res) {
+                  if (err) throw err;
+                  console.table(res);
+                  start();
+                });
+              });
+          }
+
               function addEmployee() {
                 inquirer
                   .prompt([
