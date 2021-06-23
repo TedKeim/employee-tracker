@@ -144,3 +144,25 @@ const connection = mysql.createConnection({
                       name: "managerID"
                     }
                   ])
+     .then(function(res) {
+        const firstName = res.firstName;
+        const lastName = res.lastName;
+        const roleID = res.roleID;
+        const managerID = res.managerID;
+        const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUE("${firstName}", "${lastName}", "${roleID}", "${managerID}")`;
+        connection.query(query, function(err, res) {
+            if (err) throw err;
+            console.table(res);
+            start();
+        });
+        });
+    }
+
+    function viewDepartment() {
+        const query = "SELECT * FROM department";
+        connection.query(query, function(err, res) {
+          if (err) throw err;
+          console.table(res);
+          start();
+        });
+      }
