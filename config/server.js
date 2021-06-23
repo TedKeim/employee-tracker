@@ -18,8 +18,6 @@ const connection = mysql.createConnection({
     if (err) throw err;
     start();
   });
-
-  // start inquirer prompt
   
   function start() {
     inquirer
@@ -38,6 +36,37 @@ const connection = mysql.createConnection({
           "Exit"
         ]
       })
+
+      .then(function(result) {
+        console.log("You entered: " + result.option);
+        switch (result.option) {
+          case "Add Department":
+            addDepartment();
+            break;
+          case "Add Role":
+            addRole();
+            break;
+          case "Add Employee":
+            addEmployee();
+            break;
+          case "View Department":
+            viewDepartment();
+            break;
+          case "View Role":
+            viewRole();
+            break;
+          case "View Employee":
+            viewEmployee();
+            break;
+          case "Update Employee Role":
+            updateRole();
+            break;
+          case "Exit":
+            connection.end();
+            break;
+        }
+      });
+  }
 
       function addDepartment() {
         inquirer
