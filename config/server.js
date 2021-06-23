@@ -76,6 +76,17 @@ const connection = mysql.createConnection({
             name: "department"
           })
 
+          .then(function(res) {
+            const department = res.department;
+            const query = `INSERT INTO department (name) VALUES("${department}")`;
+            connection.query(query, function(err, res) {
+              if (err) throw err;
+              console.table(res);
+              start();
+            });
+          });
+      }
+
           function addRole() {
             inquirer
               .prompt([
